@@ -3,21 +3,22 @@ class Computer{
     public cpu: string = 'cpu -not defined';
     public ram: string = 'cpu -not defined';
     public storage: string = 'cpu -not defined';
-    public gpu?: string = 'cpu -not defined';
+    public gpu?: string;
 
     displayConfiguration(){
-        console.log(`configuracion de la computadorada
-                CPU: ${this.cpu}
-                RAM: ${this.ram}
-                ALMACENAMIENTO: ${this.storage}
-                GPU: ${this.gpu}
-            `)
+    console.log(`configuracion de la computadora
+            CPU: ${this.cpu}
+            RAM: ${this.ram}
+            ALMACENAMIENTO: ${this.storage}
+            GPU: ${this.gpu ?? 'no tiene gpu'}
+        `)
     }
 
 }
 
 //Clase que implementara el platron builder
 class ComputerBuilder{
+
     private computer: Computer;
 
     constructor(){
@@ -49,17 +50,28 @@ class ComputerBuilder{
     }
 }
 
-
+//Utilizamos el builder a traves de este  function main
 function main(){
     const basicComputer = new ComputerBuilder()
+
     .setCpu('intel core 2 duo')
     .setRAM('4GB')
     .setStorage('256GB')
     .build()
 
-    console.log('%cbasic computer: ')
+    console.log('%c basic computer: ')
     basicComputer.displayConfiguration()
 
+    //gamer computer
+
+    const gamingComputer = new ComputerBuilder()
+    .setCpu('intel i9')
+    .setRAM('32GB')
+    .setStorage('1TB M2 ')
+    .setGpu('RTX40')
+    .build()
+
+    gamingComputer.displayConfiguration()
 }
 
 main();
